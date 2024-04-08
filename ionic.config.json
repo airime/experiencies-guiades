@@ -1,0 +1,7 @@
+{
+  "name": "experiencies-guiades",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
