@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { File, FileService } from '../services/file.service';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,18 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  files: File[] = [];
 
-  constructor() {}
+  constructor(
+    public fileService: FileService,
+  ) {
+    this.getDocuments();
+  }
+
+  getDocuments() {
+    this.fileService.getFiles().subscribe(files => {
+      this.files = files;
+    });
+  }
 
 }
