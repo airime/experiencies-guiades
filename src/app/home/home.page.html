@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title size="large">Experiències guiades de Silo</ion-title>
-    <ion-button color="light" slot="end" size="small" (click)="setOpen(true)">Sobre aquesta aplicació</ion-button>
+    <ion-title>Experiències guiades de Silo</ion-title>
+    <ion-button color="light" slot="end" size="small" (click)="setOpen(true)">Crèdits</ion-button>
     <ion-modal [isOpen]="isCreditsModalOpen">
       <ng-template>
         <ion-header>
@@ -30,7 +30,7 @@
   <ion-accordion-group *ngIf="files.length">
     <ion-accordion *ngFor="let file of files; let i = index">
       <ion-item slot="header" [color]="getColorSelected(i)" text-wrap (click)="openFile(file, i)">
-        <ion-label>({{file.duration}}) {{ file.name }}</ion-label>
+        <ion-label>{{ file.name }} ({{file.duration}})</ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">{{ file.description }}</div>
     </ion-accordion>
