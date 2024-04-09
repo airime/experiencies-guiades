@@ -14,6 +14,7 @@ export class HomePage {
   currentFile: any = {};
   currentTime: string = '0:00';
   seekbar: number = 0;
+  isCreditsModalOpen = false;
 
   constructor(
     public fileService: FileService,
@@ -94,6 +95,10 @@ export class HomePage {
     let percent = (event as RangeCustomEvent).detail.value;
     this.audioService.seekTo(this.audioService.convertToSeconds(percent));
     this.play();
+  }
+
+  setOpen(isOpen: boolean) {
+    this.isCreditsModalOpen = isOpen;
   }
 
   private onTimeUpdate(seconds: number, duration: number) {
