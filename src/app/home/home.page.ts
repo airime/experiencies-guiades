@@ -14,6 +14,7 @@ export class HomePage {
   currentFile: any = {};
   currentTime: string = '0:00';
   seekbar: number = 0;
+  isSeeking: boolean = false;
   isCreditsModalOpen = false;
 
   constructor(
@@ -35,7 +36,7 @@ export class HomePage {
     return 'light';
   }
 
-  openFile(file: { url: string; name: string}, index: number) {
+  openFile(file: File, index: number) {
     this.currentFile = { index, file };
     this.playStream(file.url);
   }
@@ -91,7 +92,12 @@ export class HomePage {
     return `${min}:${sec > 9 ? sec : '0'+sec}`;
   }
 
-  onSeek(event: Event) {
+  onSeekStart() {
+    this.isSeeking = true;
+  }
+
+  onSeekEnd(event: Event) {
+    this.isSeeking = false;
     let percent = (event as RangeCustomEvent).detail.value;
     this.audioService.seekTo(this.audioService.convertToSeconds(percent));
     this.play();
@@ -102,7 +108,7 @@ export class HomePage {
   }
 
   private onTimeUpdate(seconds: number, duration: number) {
-    this.seekbar = this.audioService.convertToPercentage(seconds, duration);
+    if (!this.isSeeking) this.seekbar = this.audioService.convertToPercentage(seconds, duration);
   }
 
   private async presentErrorToast() {

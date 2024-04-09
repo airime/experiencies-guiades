@@ -1,6 +1,28 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title size="large">Experiències guiades de Silo</ion-title>
+    <ion-button color="light" slot="end" size="small" (click)="setOpen(true)">Sobre aquesta aplicació</ion-button>
+    <ion-modal [isOpen]="isCreditsModalOpen">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Crèdits</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="setOpen(false)">Tancar</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <p>
+            Produït, musicat, gravat, mesclat i masteritzat a BITSTUDI de Barcelona per Xavier Batllés
+          </p>
+          <p>
+            Visita'ns a la web de la Saleta de Sants:
+            <a href="https://www.lasaletadesants.info" target="_blank" title="lasaletadesants.info">lasaletadesants.info</a>
+          </p>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
   </ion-toolbar>
 </ion-header>
 
@@ -8,38 +30,17 @@
   <ion-accordion-group *ngIf="files.length">
     <ion-accordion *ngFor="let file of files; let i = index">
       <ion-item slot="header" [color]="getColorSelected(i)" text-wrap (click)="openFile(file, i)">
-        <ion-label>{{ file.name }}</ion-label>
+        <ion-label>({{file.duration}}) {{ file.name }}</ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">{{ file.description }}</div>
     </ion-accordion>
   </ion-accordion-group>
-  <ion-button expand="block" (click)="setOpen(true)">Sobre aquesta aplicació</ion-button>
-  <ion-modal [isOpen]="isCreditsModalOpen">
-    <ng-template>
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Crèdits</ion-title>
-          <ion-buttons slot="end">
-            <ion-button (click)="setOpen(false)">Tancar</ion-button>
-          </ion-buttons>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content class="ion-padding">
-        <p>
-          Produït, musicat, gravat, mesclat i masteritzat a BITSTUDI de Barcelona per Xavier Batllés
-        </p>
-        <p>
-          Visita'ns a la web de la Saleta de Sants:
-          <a href="https://www.lasaletadesants.info" target="_blank" title="lasaletadesants.info">lasaletadesants.info</a>
-        </p>
-      </ion-content>
-    </ng-template>
-  </ion-modal>
 </ion-content>
 
 <ion-footer *ngIf="currentFile?.file">
   <ion-toolbar color="primary">
-    <ion-range color="light" min=0 max=100 [pin]="true" [pinFormatter]="updatePin" (ionChange)="onSeek($event)" [(ngModel)]="seekbar">
+    <ion-range color="light" min=0 max=100 [(ngModel)]="seekbar" [pin]="true" [pinFormatter]="updatePin"
+    (ionKnobMoveStart)="onSeekStart()" (ionKnobMoveEnd)="onSeekEnd($event)">
       <ion-icon color="light" slot="start" name="play-skip-back" aria-label="Anterior" (click)="previous()"></ion-icon>
       <ion-icon color="light" slot="end" name="play-skip-forward" aria-label="Següent" (click)="next()"></ion-icon>
     </ion-range>
