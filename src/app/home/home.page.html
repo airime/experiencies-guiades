@@ -15,3 +15,30 @@
   </ion-accordion-group>
   Produït, musicat, gravat, mesclat i masteritzat a BITSTUDI de Barcelona per Xavier Batllés
 </ion-content>
+
+<ion-footer *ngIf="currentFile?.file">
+  <ion-toolbar color="primary">
+    <ion-range color="light" min=0 max=100 [pin]="true" [pinFormatter]="updatePin" (ionChange)="onSeek($event)" [(ngModel)]="seekbar">
+      <ion-icon color="light" slot="start" name="play-skip-back" aria-label="Anterior" (click)="previous()"></ion-icon>
+      <ion-icon color="light" slot="end" name="play-skip-forward" aria-label="Següent" (click)="next()"></ion-icon>
+    </ion-range>
+  </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-title>{{currentFile?.file?.name}}</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button fill="solid" color="light" aria-label="Reproduir" (click)="play()">
+        <ion-icon slot="icon-only" name="play" aria-hidden="true"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button fill="solid" color="light" aria-label="Pausar" (click)="pause()">
+        <ion-icon slot="icon-only" name="pause" aria-hidden="true"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button fill="solid" color="light" aria-label="Parar" (click)="stop()">
+        <ion-icon slot="icon-only" name="stop" aria-hidden="true"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
