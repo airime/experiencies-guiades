@@ -1,12 +1,13 @@
-<ion-header color="primary">
-  <img src="../../assets/saletasants.png" title="La Saleta de Sants - saletadesants.info">
+<ion-header>
+  <ion-toolbar>
+    <ion-title size="large">Experiències guiades de Silo</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-title>Experiències guiades</ion-title>
   <ion-accordion-group *ngIf="files.length">
     <ion-accordion *ngFor="let file of files; let i = index">
-      <ion-item slot="header" text-wrap>
+      <ion-item slot="header" [color]="getColorSelected(i)" text-wrap (click)="openFile(file, i)">
         <ion-label>{{ file.name }}</ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">{{ file.description }}</div>

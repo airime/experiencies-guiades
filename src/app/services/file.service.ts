@@ -26,7 +26,7 @@ export class FileService {
     },
     { url: '../../assets/cat/EL MINER.mp3',
       name: 'El miner',
-      description: '',
+      description: 'EL MINER (Mario Rodríguez Cobos) (12:07)\nNarració: Carles Martin (2024)\nAmbientació musical: Xavier Batllés (2024)',
       duration: '12:07'
     },
     { url: '../../assets/cat/EL RESSENTIMENT.mp3',
