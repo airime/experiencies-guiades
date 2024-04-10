@@ -12,11 +12,10 @@ import { ToastController } from '@ionic/angular';
 export class HomePage {
   files: File[] = [];
   currentFile: any = {};
-  currentTime: string = '0:00';
   seekbar: number = 0;
   isSeeking: boolean = false;
   isPaused: boolean = false;
-  isCreditsModalOpen = false;
+  isCreditsModalOpen: boolean = false;
 
   constructor(
     public fileService: FileService,

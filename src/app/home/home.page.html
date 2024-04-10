@@ -1,12 +1,14 @@
 <ion-header>
   <ion-toolbar color="humanist">
-    <ion-title>Experiències guiades de Silo</ion-title>
+    <ion-title role="heading" aria-level="1">
+      <span class="title">Experiències guiades de Silo</span>
+    </ion-title>
     <ion-button color="light" slot="end" size="small" (click)="setCreditsOpen(true)">Crèdits</ion-button>
     <ion-modal [isOpen]="isCreditsModalOpen">
       <ng-template>
         <ion-header>
           <ion-toolbar>
-            <ion-title>Crèdits</ion-title>
+            Crèdits
             <ion-buttons slot="end">
               <ion-button (click)="setCreditsOpen(false)">Tancar</ion-button>
             </ion-buttons>
@@ -46,7 +48,9 @@
     </ion-range>
   </ion-toolbar>
   <ion-toolbar color="humanist">
-    <ion-title>{{currentFile?.file?.name}}</ion-title>
+    <ion-title>
+      <span class="title">{{currentFile?.file?.name}}</span>
+    </ion-title>
     <ion-buttons slot="primary" *ngIf="isPaused">
       <ion-button fill="solid" color="light" aria-label="Reproduir" (click)="play()">
         <ion-icon slot="icon-only" name="play" aria-hidden="true"></ion-icon>
