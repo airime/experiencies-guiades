@@ -15,6 +15,7 @@ export class HomePage {
   currentTime: string = '0:00';
   seekbar: number = 0;
   isSeeking: boolean = false;
+  isPaused: boolean = false;
   isCreditsModalOpen = false;
 
   constructor(
@@ -39,6 +40,7 @@ export class HomePage {
   openFile(file: File, index: number) {
     this.currentFile = { index, file };
     this.playStream(file.url);
+    this.isPaused = false;
   }
 
   playStream(url: any) {
@@ -62,13 +64,16 @@ export class HomePage {
 
   play() {
     this.audioService.play();
+    this.isPaused = false;
   }
 
   pause() {
     this.audioService.pause();
+    this.isPaused = true;
   }
 
   stop() {
+    this.isPaused = false;
     this.audioService.stop();
     this.currentFile = {};
   }
@@ -103,7 +108,7 @@ export class HomePage {
     this.play();
   }
 
-  setOpen(isOpen: boolean) {
+  setCreditsOpen(isOpen: boolean) {
     this.isCreditsModalOpen = isOpen;
   }
 

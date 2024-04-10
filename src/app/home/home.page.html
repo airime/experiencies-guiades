@@ -1,14 +1,14 @@
 <ion-header>
   <ion-toolbar color="humanist">
     <ion-title>Experiències guiades de Silo</ion-title>
-    <ion-button color="light" slot="end" size="small" (click)="setOpen(true)">Crèdits</ion-button>
+    <ion-button color="light" slot="end" size="small" (click)="setCreditsOpen(true)">Crèdits</ion-button>
     <ion-modal [isOpen]="isCreditsModalOpen">
       <ng-template>
         <ion-header>
           <ion-toolbar>
             <ion-title>Crèdits</ion-title>
             <ion-buttons slot="end">
-              <ion-button (click)="setOpen(false)">Tancar</ion-button>
+              <ion-button (click)="setCreditsOpen(false)">Tancar</ion-button>
             </ion-buttons>
           </ion-toolbar>
         </ion-header>
@@ -47,12 +47,12 @@
   </ion-toolbar>
   <ion-toolbar color="humanist">
     <ion-title>{{currentFile?.file?.name}}</ion-title>
-    <ion-buttons slot="primary">
+    <ion-buttons slot="primary" *ngIf="isPaused">
       <ion-button fill="solid" color="light" aria-label="Reproduir" (click)="play()">
         <ion-icon slot="icon-only" name="play" aria-hidden="true"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-buttons slot="primary">
+    <ion-buttons slot="primary" *ngIf="!isPaused">
       <ion-button fill="solid" color="light" aria-label="Pausar" (click)="pause()">
         <ion-icon slot="icon-only" name="pause" aria-hidden="true"></ion-icon>
       </ion-button>
