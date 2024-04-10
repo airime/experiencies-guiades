@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="humanist">
     <ion-title>Experiències guiades de Silo</ion-title>
     <ion-button color="light" slot="end" size="small" (click)="setOpen(true)">Crèdits</ion-button>
     <ion-modal [isOpen]="isCreditsModalOpen">
@@ -38,14 +38,14 @@
 </ion-content>
 
 <ion-footer *ngIf="currentFile?.file">
-  <ion-toolbar color="primary">
-    <ion-range color="light" min=0 max=100 [(ngModel)]="seekbar" [pin]="true" [pinFormatter]="updatePin"
+  <ion-toolbar color="humanist">
+    <ion-range color="dark" min=0 max=100 [(ngModel)]="seekbar" [pin]="true" [pinFormatter]="updatePin"
     (ionKnobMoveStart)="onSeekStart()" (ionKnobMoveEnd)="onSeekEnd($event)">
-      <ion-icon color="light" slot="start" name="play-skip-back" aria-label="Anterior" (click)="previous()"></ion-icon>
-      <ion-icon color="light" slot="end" name="play-skip-forward" aria-label="Següent" (click)="next()"></ion-icon>
+      <ion-icon color="dark" slot="start" name="play-skip-back" aria-label="Anterior" (click)="previous()"></ion-icon>
+      <ion-icon color="dark" slot="end" name="play-skip-forward" aria-label="Següent" (click)="next()"></ion-icon>
     </ion-range>
   </ion-toolbar>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="humanist">
     <ion-title>{{currentFile?.file?.name}}</ion-title>
     <ion-buttons slot="primary">
       <ion-button fill="solid" color="light" aria-label="Reproduir" (click)="play()">

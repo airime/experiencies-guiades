@@ -32,7 +32,7 @@ export class HomePage {
   }
 
   getColorSelected(index: number): string {
-    if (this.currentFile.index === index) return 'primary';
+    if (this.currentFile.index === index) return 'humanist';
     return 'light';
   }
 
