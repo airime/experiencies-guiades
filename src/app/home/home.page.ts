@@ -37,6 +37,7 @@ export class HomePage {
     this.lang.value = lang ? lang : 'cast';
     this.translate.use(this.lang.value);
     this.getDocuments(lang ? lang : 'cast');
+    this.stop();
   }
 
   getDocuments(lang: string) {
