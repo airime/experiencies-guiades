@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { File, FileService } from '../services/file.service';
 import { AudioService } from '../services/audio.service';
-import { RangeCustomEvent } from '@ionic/angular';
-import { ToastController } from '@ionic/angular';
+import { ToastController, RangeCustomEvent, SegmentCustomEvent } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +10,7 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  lang = {value: 'cat'};
   files: File[] = [];
   currentFile: any = {};
   seekbar: number = 0;
@@ -20,13 +21,26 @@ export class HomePage {
   constructor(
     public fileService: FileService,
     public audioService: AudioService,
+    public translate: TranslateService,
     private toastController: ToastController,
   ) {
-    this.getDocuments();
+    translate.setDefaultLang('cast');
+    this.getDocuments('cast');
   }
 
-  getDocuments() {
-    this.fileService.getFiles().subscribe(files => {
+  setCreditsOpen(isOpen: boolean) {
+    this.isCreditsModalOpen = isOpen;
+  }
+
+  selectLang(event: Event) {
+    let lang = (event as SegmentCustomEvent).detail.value ? (event as SegmentCustomEvent).detail.value?.toString() : 'cat';
+    this.lang.value = lang ? lang : 'cast';
+    this.translate.use(this.lang.value);
+    this.getDocuments(lang ? lang : 'cast');
+  }
+
+  getDocuments(lang: string) {
+    this.fileService.getFiles(lang).subscribe(files => {
       this.files = files;
     });
   }
@@ -105,10 +119,6 @@ export class HomePage {
     let percent = (event as RangeCustomEvent).detail.value;
     this.audioService.seekTo(this.audioService.convertToSeconds(percent));
     this.play();
-  }
-
-  setCreditsOpen(isOpen: boolean) {
-    this.isCreditsModalOpen = isOpen;
   }
 
   private onTimeUpdate(seconds: number, duration: number) {

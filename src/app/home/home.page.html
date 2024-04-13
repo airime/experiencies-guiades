@@ -1,31 +1,41 @@
 <ion-header>
   <ion-toolbar color="humanist">
     <ion-title role="heading" aria-level="1">
-      <span class="title">Experiències guiades de Silo</span>
+      <span class="title">{{ 'TITLE' | translate:lang }}</span>
     </ion-title>
     <ion-button color="light" slot="end" size="small" (click)="setCreditsOpen(true)">Crèdits</ion-button>
-    <ion-modal [isOpen]="isCreditsModalOpen">
-      <ng-template>
-        <ion-header>
-          <ion-toolbar>
-            Crèdits
-            <ion-buttons slot="end">
-              <ion-button (click)="setCreditsOpen(false)">Tancar</ion-button>
-            </ion-buttons>
-          </ion-toolbar>
-        </ion-header>
-        <ion-content class="ion-padding">
-          <p>
-            Produït, musicat, gravat, mesclat i masteritzat a BITSTUDI de Barcelona per Xavier Batllés
-          </p>
-          <p>
-            Visita'ns a la web de la Saleta de Sants:
-            <a href="https://www.lasaletadesants.info" target="_blank" title="lasaletadesants.info">lasaletadesants.info</a>
-          </p>
-        </ion-content>
-      </ng-template>
-    </ion-modal>
   </ion-toolbar>
+  <ion-toolbar color="humanist">
+    <ion-segment value="cast" (ionChange)="selectLang($event)">
+      <ion-segment-button value="cast">
+        <img src="../../assets/cast.png" title="Castellano">
+      </ion-segment-button>
+      <ion-segment-button value="cat">
+        <img src="../../assets/cat.png" title="Català">
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+  <ion-modal [isOpen]="isCreditsModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          Crèdits
+          <ion-buttons slot="end">
+            <ion-button (click)="setCreditsOpen(false)">Tancar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <p>
+          Produït, musicat, gravat, mesclat i masteritzat a BITSTUDI de Barcelona per Xavier Batllés
+        </p>
+        <p>
+          Visita'ns a la web de la Saleta de Sants:
+          <a href="https://www.lasaletadesants.info" target="_blank" title="lasaletadesants.info">lasaletadesants.info</a>
+        </p>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-header>
 
 <ion-content padding>
@@ -44,7 +54,7 @@
     <ion-range color="dark" min=0 max=100 [(ngModel)]="seekbar" [pin]="true" [pinFormatter]="updatePin"
     (ionKnobMoveStart)="onSeekStart()" (ionKnobMoveEnd)="onSeekEnd($event)">
       <ion-icon color="dark" slot="start" name="play-skip-back" aria-label="Anterior" (click)="previous()"></ion-icon>
-      <ion-icon color="dark" slot="end" name="play-skip-forward" aria-label="Següent" (click)="next()"></ion-icon>
+      <ion-icon color="dark" slot="end" name="play-skip-forward" aria-label="Siguiente" (click)="next()"></ion-icon>
     </ion-range>
   </ion-toolbar>
   <ion-toolbar color="humanist">
@@ -52,7 +62,7 @@
       <span class="title">{{currentFile?.file?.name}}</span>
     </ion-title>
     <ion-buttons slot="primary" *ngIf="isPaused">
-      <ion-button fill="solid" color="light" aria-label="Reproduir" (click)="play()">
+      <ion-button fill="solid" color="light" aria-label="Reproducir" (click)="play()">
         <ion-icon slot="icon-only" name="play" aria-hidden="true"></ion-icon>
       </ion-button>
     </ion-buttons>
