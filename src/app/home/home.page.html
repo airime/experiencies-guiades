@@ -3,7 +3,7 @@
     <ion-title role="heading" aria-level="1">
       <span class="title">{{ 'TITLE' | translate:lang }}</span>
     </ion-title>
-    <ion-button color="light" slot="end" size="small" (click)="setCreditsOpen(true)">Crèdits</ion-button>
+    <ion-button color="light" slot="end" size="small" (click)="setCreditsOpen(true)">{{ 'CREDITS' | translate:lang }}</ion-button>
   </ion-toolbar>
   <ion-toolbar color="humanist">
     <ion-segment value="cast" (ionChange)="selectLang($event)">
@@ -19,18 +19,18 @@
     <ng-template>
       <ion-header>
         <ion-toolbar>
-          Crèdits
+          {{ 'CREDITS' | translate:lang }}
           <ion-buttons slot="end">
-            <ion-button (click)="setCreditsOpen(false)">Tancar</ion-button>
+            <ion-button (click)="setCreditsOpen(false)">{{ 'CLOSE' | translate:lang }}</ion-button>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
         <p>
-          Produït, musicat, gravat, mesclat i masteritzat a BITSTUDI de Barcelona per Xavier Batllés
+          {{ 'MUSIC' | translate:lang }}
         </p>
         <p>
-          Visita'ns a la web de la Saleta de Sants:
+          {{ 'VISIT' | translate:lang }}
           <a href="https://www.lasaletadesants.info" target="_blank" title="lasaletadesants.info">lasaletadesants.info</a>
         </p>
       </ion-content>
