@@ -37,7 +37,7 @@ export class HomePage {
   }
 
   selectLang(event: Event) {
-    let lang = (event as SegmentCustomEvent).detail.value ? (event as SegmentCustomEvent).detail.value?.toString() : 'cat';
+    let lang = (event as SegmentCustomEvent).detail.value ? (event as SegmentCustomEvent).detail.value?.toString() : 'cast';
     this.lang.value = lang ? lang : 'cast';
     this.translate.use(this.lang.value);
     this.getDocuments(lang ? lang : 'cast');
@@ -65,19 +65,26 @@ export class HomePage {
     // stop any track that might be playing now
     this.audioService.stop();
 
-    this.audioService.playStream(url).subscribe((event: any) => {
-      const audioObj = event.target;
-      // the list of possible events we're listening is on the audio service method
-      switch (event.type) {
-        case 'error':
-          this.presentErrorToast();
-          break;
-
-        case 'timeupdate':
-          this.onTimeUpdate(audioObj.currentTime, audioObj.duration);
-          break;
-      }
-    });
+    this.audioService.playStream(url).subscribe({
+      next: (event: any) => {
+        const audioObj = event.target;
+        // the list of possible events we're listening is on the audio service method
+        switch (event.type) {
+          case 'error':
+            console.log('Audio emitted error');
+            this.presentErrorToast();
+            break;
+          case 'timeupdate':
+            this.onTimeUpdate(audioObj.currentTime, audioObj.duration);
+            break;
+        }
+      },
+      error: (e) => {
+        console.error("Stream emitted error", e);
+        this.presentErrorToast();
+      },
+      complete: () => {}
+  });
   }
 
   play() {
@@ -132,7 +139,8 @@ export class HomePage {
 
   private async presentErrorToast() {
     const toast = await this.toastController.create({
-      message: 'Hi ha hagut un error de reproducció. Sisplau, torna-ho a intentar',
+      color: 'error',
+      message: this.translate.instant('ERROR'),
       duration: 1500,
       position: 'bottom',
     });

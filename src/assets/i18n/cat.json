@@ -4,5 +4,6 @@
   "CLOSE": "Tancar",
   "MUSIC": "Produït, musicat, gravat, mesclat i masteritzat a BITSTUDI de Barcelona per Xavier Batllés",
   "VISIT": "Visita'ns a la web de la Saleta de Sants: ",
-  "PLAY": "Reproduir"
+  "PLAY": "Reproduir",
+  "ERROR": "Hi ha hagut un error de reproducció. Siusplau, torna-ho a intentar."
 }
