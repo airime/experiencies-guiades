@@ -6,12 +6,12 @@
     <ion-button color="light" slot="end" size="small" (click)="setCreditsOpen(true)">{{ 'CREDITS' | translate:lang }}</ion-button>
   </ion-toolbar>
   <ion-toolbar color="humanist">
-    <ion-segment value="cast" (ionChange)="selectLang($event)">
-      <ion-segment-button value="cast">
-        <img src="../../assets/cast.png" title="Castellano">
-      </ion-segment-button>
+    <ion-segment value="cat" (ionChange)="selectLang($event)">
       <ion-segment-button value="cat">
         <img src="../../assets/cat.png" title="Català">
+      </ion-segment-button>
+      <ion-segment-button value="cast">
+        <img src="../../assets/cast.png" title="Castellano">
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
@@ -31,7 +31,7 @@
         </p>
         <p>
           {{ 'VISIT' | translate:lang }}
-          <a href="https://www.lasaletadesants.info" target="_blank" title="lasaletadesants.info">lasaletadesants.info</a>
+          <a href="http://silo.net/es" target="_blank" title="http://silo.net/es">http://silo.net/es</a>
         </p>
       </ion-content>
     </ng-template>

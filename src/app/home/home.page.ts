@@ -24,8 +24,8 @@ export class HomePage {
     public translate: TranslateService,
     private toastController: ToastController,
   ) {
-    translate.setDefaultLang('cast');
-    this.getDocuments('cast');
+    translate.setDefaultLang('cat');
+    this.getDocuments('cat');
   }
 
   setCreditsOpen(isOpen: boolean) {
@@ -37,10 +37,10 @@ export class HomePage {
   }
 
   selectLang(event: Event) {
-    let lang = (event as SegmentCustomEvent).detail.value ? (event as SegmentCustomEvent).detail.value?.toString() : 'cast';
-    this.lang.value = lang ? lang : 'cast';
+    let lang = (event as SegmentCustomEvent).detail.value ? (event as SegmentCustomEvent).detail.value?.toString() : 'cat';
+    this.lang.value = lang ? lang : 'cat';
     this.translate.use(this.lang.value);
-    this.getDocuments(lang ? lang : 'cast');
+    this.getDocuments(lang ? lang : 'cat');
     this.stop();
   }
 
@@ -71,7 +71,7 @@ export class HomePage {
         // the list of possible events we're listening is on the audio service method
         switch (event.type) {
           case 'error':
-            console.log('Audio emitted error');
+            console.error('Audio emitted error');
             this.presentErrorToast();
             break;
           case 'timeupdate':
@@ -84,7 +84,7 @@ export class HomePage {
         this.presentErrorToast();
       },
       complete: () => {}
-  });
+    });
   }
 
   play() {
