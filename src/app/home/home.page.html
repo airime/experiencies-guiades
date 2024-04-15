@@ -15,7 +15,7 @@
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
-  <ion-modal [isOpen]="isCreditsModalOpen">
+  <ion-modal [isOpen]="isCreditsModalOpen" (willDismiss)="onWillDismiss()">
     <ng-template>
       <ion-header>
         <ion-toolbar>
@@ -41,10 +41,16 @@
 <ion-content padding>
   <ion-accordion-group *ngIf="files.length">
     <ion-accordion *ngFor="let file of files; let i = index">
-      <ion-item slot="header" [color]="getColorSelected(i)" text-wrap (click)="openFile(file, i)">
+      <ion-item slot="header" [color]="getColorSelected(i)" text-wrap>
         <ion-label>{{ file.name }} ({{file.duration}})</ion-label>
       </ion-item>
-      <div class="ion-padding" slot="content">{{ file.description }}</div>
+      <div class="ion-padding" slot="content">
+        {{ file.description }}
+        <br>
+        <ion-button fill="solid" color="humanist" (click)="openFile(file, i)">
+          <ion-icon slot="start" name="play"></ion-icon>{{ 'PLAY' | translate:lang }}
+        </ion-button>
+      </div>
     </ion-accordion>
   </ion-accordion-group>
 </ion-content>

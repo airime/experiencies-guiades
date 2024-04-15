@@ -32,6 +32,10 @@ export class HomePage {
     this.isCreditsModalOpen = isOpen;
   }
 
+  onWillDismiss() {
+    this.isCreditsModalOpen = false;
+  }
+
   selectLang(event: Event) {
     let lang = (event as SegmentCustomEvent).detail.value ? (event as SegmentCustomEvent).detail.value?.toString() : 'cat';
     this.lang.value = lang ? lang : 'cast';
