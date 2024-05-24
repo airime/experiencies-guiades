@@ -5,5 +5,6 @@
   "MUSIC": "Producido, musicado, grabado, mezclado y masterizado en BITSTUDI de Barcelona por Xavier Batllés, excepto las narraciones de “La muerte”. “El gran error”, “El descenso”, “Los disfraces” y “Avances y retrocesos”, grabadas por Álvaro Orús en su estudio de Madrid.",
   "VISIT": "Visita la web de Silo: ",
   "PLAY": "Reproducir",
-  "ERROR": "Ha habido un error de reproducción. Por favor, vuélvelo a intentar."
+  "ERROR": "Ha habido un error de reproducción. Por favor, vuélvelo a intentar.",
+  "NOFILES": "No se han encontrado experiencias."
 }

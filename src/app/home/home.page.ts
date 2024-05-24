@@ -1,13 +1,23 @@
 import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { File, FileService } from '../services/file.service';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonFooter, IonButton,
+  IonSegmentButton, IonSegment, IonModal, IonButtons, IonIcon, IonLabel,
+  IonAccordion, IonAccordionGroup, IonItem, IonRange } from '@ionic/angular/standalone';
 import { AudioService } from '../services/audio.service';
-import { ToastController, RangeCustomEvent, SegmentCustomEvent } from '@ionic/angular';
+import { File, FileService } from '../services/file.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { RangeCustomEvent, SegmentCustomEvent, ToastController } from '@ionic/angular';
+import { play, pause, stop, playSkipBack, playSkipForward } from 'ionicons/icons';
+import { FormsModule } from '@angular/forms';
+import { addIcons } from 'ionicons';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
+  standalone: true,
+  imports: [TranslateModule, FormsModule, IonModal, IonSegment, IonSegmentButton,
+    IonHeader, IonFooter, IonToolbar, IonTitle, IonContent, IonButton, IonButtons, IonIcon,
+    IonAccordion, IonAccordionGroup, IonLabel, IonItem, IonRange],
 })
 export class HomePage {
   lang = {value: 'cat'};
@@ -24,6 +34,7 @@ export class HomePage {
     public translate: TranslateService,
     private toastController: ToastController,
   ) {
+    addIcons({ play, pause, stop, playSkipBack, playSkipForward});
     translate.setDefaultLang('cat');
     this.getDocuments('cat');
   }
